@@ -1,0 +1,5 @@
+---
+
+# Configuration options for Debian, Ubuntu and other Debian-based distributions
+
+gitlab_multirunner_deb_repo: "deb https://packages.gitlab.com/runner/gitlab-ci-multi-runner/{{ansible_distribution|lower}}/ {{ansible_distribution_release|lower}} main"

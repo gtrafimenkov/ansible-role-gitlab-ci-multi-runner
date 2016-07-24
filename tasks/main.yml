@@ -1,0 +1,28 @@
+---
+
+- name: Include distribution-specific variables
+  include_vars: "{{item}}"
+  with_first_found:
+    - "{{ansible_distribution|lower}}-{{ansible_distribution_release|lower}}.yml"
+    - "{{ansible_distribution|lower}}.yml"
+    - "default.yml"
+
+- name: Include OS family variables
+  include_vars: "{{ansible_os_family|lower}}-family.yml"
+
+# To speed up the role execution we play installation instructions only
+# when multirunner is not already installed
+
+- name: Check if GitLab multirunner is already installed
+  shell: gitlab-ci-multi-runner --version || echo "multirunner not found"
+  failed_when: false
+  changed_when: false
+  register: test_run_result
+
+- name: Install GitLab multirunner
+  include: "install-on-{{ansible_os_family|lower}}-family.yml"
+  when: "'multirunner not found' in test_run_result.stdout"
+
+- name: Register new runners
+  include: register-one-runner.yml
+  with_items: "{{gitlab_multirunner.runners|default([])}}"

@@ -1,0 +1,15 @@
+---
+
+- name: Enable https transport
+  apt: name=apt-transport-https state=present update_cache=true cache_valid_time=3600
+  become: yes
+
+- name: Add GitLab package signing key
+  apt_key: keyserver=keyserver.ubuntu.com id={{gitlab_package_signing_key}}
+
+- name: Add GitLab multirunner repository
+  apt_repository: repo={{gitlab_multirunner_deb_repo}} state=present
+  register: add_repo_result
+
+- name: Install gitlab multirunner
+  apt: name=gitlab-ci-multi-runner state=present update_cache=yes cache_valid_time=3600

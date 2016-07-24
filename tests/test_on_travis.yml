@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  become: yes
+  vars:
+    gitlab_multirunner:
+      runners: []
+  roles:
+    - ansible-role-gitlab-ci-multi-runner
