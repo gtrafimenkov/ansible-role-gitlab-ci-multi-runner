@@ -2,6 +2,9 @@
 
 This role can be used to install [gitlab-ci-multi-runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner) and manage runners (register and unregister them as requested).
 
+[![Build Status](https://travis-ci.org/gtrafimenkov/ansible-role-gitlab-ci-multi-runner.svg)](http://travis-ci.org/gtrafimenkov/ansible-role-gitlab-ci-multi-runner)
+[![Ansible Role](https://img.shields.io/badge/role-gtrafimenkov.gitlab--ci--multi--runner-blue.svg?maxAge=2592000)](https://galaxy.ansible.com/gtrafimenkov/gitlab-ci-multi-runner)
+
 ### Limitations
 
 - runners' configuration cannot be changed after registration
