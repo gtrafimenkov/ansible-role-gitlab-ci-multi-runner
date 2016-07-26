@@ -1,0 +1,5 @@
+---
+
+# Default configuration for the case when `gitlab_multirunner` structure is not defined
+gitlab_multirunner:
+  runners: []

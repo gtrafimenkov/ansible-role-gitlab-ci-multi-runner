@@ -32,6 +32,12 @@ This role can be used to install [gitlab-ci-multi-runner](https://gitlab.com/git
           state: absent
         - name: old-runner2
           state: absent
+        - name: docker-runner1
+          state: present
+          ci_server: https://gitlab.example/ci
+          token: uJLVTcWMrsuYzhBn9Y1N
+          executor: docker
+          docker_image: ubuntu:14.04
   roles:
     - gtrafimenkov.gitlab-ci-multi-runner
 ```
@@ -49,6 +55,7 @@ At the moment only:
 At the moment it is only:
 
 - shell
+- docker
 
 ### TODO
 
@@ -56,6 +63,10 @@ At the moment it is only:
 - add integration tests
 - support more executors
 - make it possible to unregister existing runners
+
+### Configuration options may change
+
+Configuration options may change in the future releases in backward incompatible way.
 
 ### License
 

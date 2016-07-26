@@ -8,7 +8,7 @@
 
 - name: Check if requested executor is supported
   assert:
-    that: "_config.executor in ['shell']"
+    that: "_config.executor in ['shell', 'docker']"
   when: _config.state != 'absent'
 
 - name: Validate configuration parameters
@@ -18,6 +18,7 @@
 - name: Precalculate some configuration options
   set_fact:
     _taglist: "{{_config.tags|default([])|join(',')}}"
+    _docker_image: "{{' --docker-image ' + _config.docker_image if _config.executor == 'docker' else ''}}"
 
 - name: Check if runner already registered
   shell: gitlab-ci-multi-runner list 2>&1 | egrep '^{{_config.name}}\s+'
@@ -30,7 +31,7 @@
 - block:
 
     - name: Register runner '{{_config.name}}'
-      command: "gitlab-ci-multi-runner register -n --name '{{_config.name}}' -r '{{_config.token}}' --executor '{{_config.executor}}' -u '{{_config.ci_server}}' --tag-list '{{_taglist}}'"
+      command: "gitlab-ci-multi-runner register -n --name '{{_config.name}}' -r '{{_config.token}}' --executor '{{_config.executor}}' -u '{{_config.ci_server}}' --tag-list '{{_taglist}}' {{_docker_image}}"
 
   when: (check_if_registered_result.rc != 0) and (_config.state == 'present')
 
