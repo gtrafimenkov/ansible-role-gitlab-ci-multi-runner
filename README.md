@@ -44,9 +44,13 @@ This role can be used to install [gitlab-ci-multi-runner](https://gitlab.com/git
 
 ### Supported Platforms
 
-At the moment only:
+The playbook was tested on following platforms:
 
-- Debian-based Linux distributions
+- Debian 7
+- Debian 8
+- Ubuntu 12.04
+- Ubuntu 14.04
+- Ubuntu 16.04
 
 ### Supported Executors
 
