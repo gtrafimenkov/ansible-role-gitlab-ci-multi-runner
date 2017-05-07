@@ -18,6 +18,7 @@ This role can be used to install [gitlab-ci-multi-runner](https://gitlab.com/git
     - testhost
   become: yes
   vars:
+    # concurent = 4
     gitlab_multirunner:
       runners:
         - name: runner21

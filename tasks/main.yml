@@ -26,3 +26,9 @@
 - name: Register new runners
   include: register-one-runner.yml
   with_items: "{{gitlab_multirunner.runners|default([])}}"
+
+- name: Set concurrent parameter
+  lineinfile: path=/etc/gitlab-runner/config.toml regexp="^\s*#?\s*concurrent\s+" line="concurrent = {{gitlab_multirunner.concurrent}}" state=present insertbefore=BOF
+  when: gitlab_multirunner.concurrent is defined
+  notify: Restart gitlab runner
+  become: yes
