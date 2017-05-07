@@ -73,6 +73,10 @@ At the moment it is only:
 
 Configuration options may change in the future releases in backward incompatible way.
 
+### History
+
+[changelog.md](/changelog.md)
+
 ### License
 
 MIT
