@@ -1,0 +1,8 @@
+---
+
+
+- homebrew:
+  name: gitlab-ci-mutli-runner
+  state: present
+  update_homebrew: yes
+
