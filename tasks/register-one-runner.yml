@@ -20,6 +20,7 @@
     _taglist: "{{_config.tags|default([])|join(',')}}"
     _docker_image: "{{' --docker-image ' + _config.docker_image if _config.executor == 'docker' else ''}}"
     _description: "{{_config.description|default('')}}"
+    _env: "{% for e in _config.env|default([]) %} --env '{{e}}'{% endfor %}"
 
 - name: Check if runner already registered
   shell: gitlab-ci-multi-runner list 2>&1 | egrep '^{{_config.name}}\s+'
@@ -32,7 +33,7 @@
 - block:
 
     - name: Register runner '{{_config.name}}'
-      command: "gitlab-ci-multi-runner register -n --name '{{_config.name}}' --description '{{_description}}' -r '{{_config.token}}' --executor '{{_config.executor}}' -u '{{_config.ci_server}}' --tag-list '{{_taglist}}' {{_docker_image}}"
+      command: "gitlab-ci-multi-runner register -n --name '{{_config.name}}' --description '{{_description}}' -r '{{_config.token}}' --executor '{{_config.executor}}' -u '{{_config.ci_server}}' {{_env}} --tag-list '{{_taglist}}' {{_docker_image}}"
 
   when: (check_if_registered_result.rc != 0) and (_config.state == 'present')
 

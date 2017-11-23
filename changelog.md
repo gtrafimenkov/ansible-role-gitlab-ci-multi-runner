@@ -1,6 +1,7 @@
 ## v0.0.4
 
 - add runner description
+- add runner environment
 
 ## v0.0.3
 
