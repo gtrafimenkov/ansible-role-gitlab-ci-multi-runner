@@ -1,6 +1,7 @@
 ## v0.0.4
 
 - add runner environment
+- support installation on Mac OS using homebrew
 
 ## v0.0.3
 
