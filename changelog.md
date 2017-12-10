@@ -1,3 +1,7 @@
+## v0.0.6
+
+- fix check register runners detection
+
 ## v0.0.5
 
 - fix role application in check mode
