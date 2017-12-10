@@ -1,3 +1,7 @@
+## v0.0.5
+
+- fix role application in check mode
+
 ## v0.0.4
 
 - add runner environment

@@ -26,6 +26,7 @@
   failed_when: false
   changed_when: false
   register: check_if_registered_result
+  check_mode: no
 
 # check_if_registered_result.rc == 0 when a runner with the given name is already registered
 

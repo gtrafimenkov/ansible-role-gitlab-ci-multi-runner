@@ -18,6 +18,7 @@
   failed_when: false
   changed_when: false
   register: test_run_result
+  check_mode: no
 
 - name: Install GitLab multirunner
   include: "install-on-{{ansible_os_family|lower}}-family.yml"
