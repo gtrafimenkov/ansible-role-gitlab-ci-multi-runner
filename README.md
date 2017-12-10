@@ -23,9 +23,13 @@ This role can be used to install [gitlab-ci-multi-runner](https://gitlab.com/git
       runners:
         - name: runner21
           state: present
+          desctiption: Runner description
           ci_server: https://gitlab.example/ci
           token: uJLVTcWMrsuYzhBn9Y1N
           executor: shell
+          env: 
+            - "VAR1=value"
+            - "VAR2=value"
           tags:
             - my1
             - my2
