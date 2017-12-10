@@ -42,6 +42,8 @@ This role can be used to install [gitlab-ci-multi-runner](https://gitlab.com/git
           token: uJLVTcWMrsuYzhBn9Y1N
           executor: docker
           docker_image: ubuntu:14.04
+          docker_volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
   roles:
     - gtrafimenkov.gitlab-ci-multi-runner
 ```

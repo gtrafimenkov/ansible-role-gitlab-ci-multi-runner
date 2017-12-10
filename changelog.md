@@ -1,3 +1,7 @@
+## v0.0.6
+
+- add runner docker_volumes
+
 ## v0.0.5
 
 - fix role application in check mode
