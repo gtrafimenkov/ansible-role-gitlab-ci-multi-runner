@@ -1,0 +1,31 @@
+---
+# - name: Install docker
+#   shell: "wget -qO- https://get.docker.com/ | sh"
+
+- name: Install docker requirements
+  yum:
+    name: 
+      - wget 
+      - yum-utils 
+      - device-mapper-persistent-data 
+      - lvm2
+    state: latest
+
+- name: Add Docker repository
+  yum_repository:
+    name: docker
+    description: Docker YUM repo
+    baseurl: https://download.docker.com/linux/centos/{{ansible_distribution_major_version}}/$basearch/stable
+    gpgcheck: yes
+    gpgkey: "https://download.docker.com/linux/centos/gpg"
+    sslverify: no
+
+- name: Install docker to use it as runner
+  yum:
+    name: docker-ce
+    state: latest
+
+- name: Start docker
+  systemd: 
+    state: started 
+    name: docker

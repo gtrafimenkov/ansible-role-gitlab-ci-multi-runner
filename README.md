@@ -55,6 +55,7 @@ The playbook was tested on following platforms:
 - Ubuntu 12.04
 - Ubuntu 14.04
 - Ubuntu 16.04
+- Centos 7
 
 ### Supported Executors
 
@@ -67,7 +68,6 @@ At the moment it is only:
 
 ### TODO
 
-- add support for CentOS
 - add integration tests
 - support more executors
 - make it possible to unregister existing runners

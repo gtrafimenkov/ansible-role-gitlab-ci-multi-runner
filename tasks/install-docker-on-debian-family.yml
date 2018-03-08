@@ -1,0 +1,43 @@
+---
+# - name: Install docker
+#   shell: "wget -qO- https://get.docker.com/ | sh"
+
+- name: Install docker requirements
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+    - python-urllib3
+    - python-openssl
+    - python-pyasn1
+    - python-pip
+
+- name: apt-key dependencies
+  pip:
+    name: ndg-httpsclient
+
+- name: Add Docker Apt signing key
+  apt_key:
+    url: https://download.docker.com/linux/{{ansible_distribution|lower}}/gpg
+    state: present
+    validate_certs: False
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release|lower}} stable"
+    
+
+- name: Install docker to use it as runner
+  apt:
+    name: docker-ce
+    state: latest
+
+- name: Start docker
+  service: 
+    state: started 
+    name: docker

@@ -1,0 +1,5 @@
+---
+
+# Configuration options for RedHat, Centos and other Redhat-based distributions
+
+gitlab_multirunner_rpm_repo: "https://packages.gitlab.com/runner/gitlab-runner/el/{{ansible_distribution_major_version}}/$basearch"

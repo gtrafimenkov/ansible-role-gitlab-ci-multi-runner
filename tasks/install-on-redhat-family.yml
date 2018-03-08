@@ -1,0 +1,19 @@
+---
+# - name: Add GitLab's repositories
+#   shell: "curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash"
+
+- name: Add Gitlab repository
+  yum_repository:
+    name: gitlab_ci
+    description: GITLAB-CI YUM repo configured with ANSIBLE
+    baseurl: "{{gitlab_multirunner_rpm_repo}}"
+    gpgcheck: no
+    gpgkey: "https://packages.gitlab.com/runner/gitlab-runner/gpgkey"
+    sslverify: yes
+    sslcacert: "/etc/pki/tls/certs/ca-bundle.crt"
+
+- name: Install GitLab runner
+  yum:
+    name: gitlab-ci-multi-runner
+    state: latest
+
