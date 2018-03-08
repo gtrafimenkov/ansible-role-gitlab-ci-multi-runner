@@ -4,13 +4,22 @@
 
 - name: Install docker requirements
   apt:
-    name: 
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg2
-      - software-properties-common
+    name: "{{ item }}"
     state: latest
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+    - python-urllib3
+    - python-openssl
+    - python-pyasn1
+    - python-pip
+
+- name: apt-key dependencies
+  pip:
+    name: ndg-httpsclient
 
 - name: Add Docker Apt signing key
   apt_key:
