@@ -6,7 +6,7 @@
   yum_repository:
     name: gitlab_ci
     description: GITLAB-CI YUM repo configured with ANSIBLE
-    baseurl: "https://packages.gitlab.com/runner/gitlab-runner/el/{{ansible_distribution_major_version}}/$basearch"
+    baseurl: "{{gitlab_multirunner_rpm_repo}}"
     gpgcheck: no
     gpgkey: "https://packages.gitlab.com/runner/gitlab-runner/gpgkey"
     sslverify: yes
