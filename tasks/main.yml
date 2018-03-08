@@ -38,5 +38,5 @@
   become: yes
 
 - name: install docker
-  include_tasks: install-docker-on-{{ansible_os_family}}-family.yml
+  include_tasks: install-docker-on-{{ansible_os_family|lower}}-family.yml
   when: runners | selectattr(executor,'equalto',docker) | list | count > 0
