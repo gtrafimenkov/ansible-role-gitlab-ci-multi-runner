@@ -38,6 +38,6 @@
     state: latest
 
 - name: Start docker
-  systemd: 
+  service: 
     state: started 
     name: docker
