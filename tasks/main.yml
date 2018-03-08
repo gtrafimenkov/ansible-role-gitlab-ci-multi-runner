@@ -1,4 +1,7 @@
 ---
+- name: Display OS family
+  debug: 
+    msg: "OS Family is {{ansible_distribution|lower}} / {{ansible_distribution_release|lower}}"
 
 - name: Include distribution-specific variables
   include_vars: "{{item}}"
@@ -21,11 +24,11 @@
   check_mode: no
 
 - name: Install GitLab multirunner
-  include: "install-on-{{ansible_os_family|lower}}-family.yml"
+  include_tasks: "install-on-{{ansible_os_family|lower}}-family.yml"
   when: "'multirunner not found' in test_run_result.stdout"
 
 - name: Register new runners
-  include: register-one-runner.yml
+  include_tasks: register-one-runner.yml
   with_items: "{{gitlab_multirunner.runners|default([])}}"
 
 - name: Set concurrent parameter
@@ -33,3 +36,7 @@
   when: gitlab_multirunner.concurrent is defined
   notify: Restart gitlab runner
   become: yes
+
+- name: install docker
+  include_tasks: install-docker-on-{{ansible_os_family}}-family.yml
+  when: runners | selectattr(executor,'equalto',docker) | list | count > 0
