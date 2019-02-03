@@ -67,13 +67,6 @@ At the moment it is only:
 - shell
 - docker
 
-### TODO
-
-- add support for CentOS
-- add integration tests
-- support more executors
-- make it possible to unregister existing runners
-
 ### Configuration options may change
 
 Configuration options may change in the future releases in backward incompatible way.
