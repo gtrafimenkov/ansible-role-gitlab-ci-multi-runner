@@ -1,3 +1,5 @@
+*This project has been discontinued.*
+
 ## Install gitlab-ci-multi-runner and manage runners
 
 This role can be used to install [gitlab-ci-multi-runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner) and manage runners (register and unregister them as requested).
